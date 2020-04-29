@@ -1,1 +1,1 @@
-En esta carpeta se encuentra las imagenes de cada proyecto utilizadas en sus respectivos archivos readme.md
+En esta carpeta se encuentran las imagenes utilizadas en los archivos readme.me de cada proyecto
