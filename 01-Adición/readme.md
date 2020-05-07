@@ -2,7 +2,7 @@
 * #### Problema: 
     La adición de dos números
 * #### Refinamiento del problema e Hipotesis:
-    “Mostrar la suma de dos números ingresados por el usuario”
+    “Mostrar la suma de dos números enteros ingresados por el usuario”
 
 * #### Modelo IPO:
     ℤ + ℤ ➝ Adición ➝ ℤ
