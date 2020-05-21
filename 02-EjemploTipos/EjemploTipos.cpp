@@ -1,8 +1,9 @@
 /*
- Curso: K1051 
+ Trabajo practico N°2 Ejemplo Tipos de Datos
+ Ejemplificar la aplicación de los tipos de datos vistos en clases.
  Alumno: Matias Dominguez
  Legajo: 1743375
- TP: 02-Ejemplo Tipos de Datos
+ 20-05-2020
 */
 #include <iostream>
 #include <cassert>
