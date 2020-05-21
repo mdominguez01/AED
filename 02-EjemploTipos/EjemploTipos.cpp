@@ -31,9 +31,6 @@ int main(){
     assert(cadena=="hola");
     
     
-    //operaciones con booleanos
-    
-    
     //operaciones con unsign long init,init y short (usan las mismas operaciones)
     //SUMA
      nro_positivo_lli= nro_positivo_lli +1;
