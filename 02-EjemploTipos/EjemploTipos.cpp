@@ -1,6 +1,6 @@
 /*
  Trabajo practico N°2 Ejemplo Tipos de Datos
- Ejemplificar la aplicación de los tipos de datos vistos en clases.
+ Ejemplificar la aplicación de los tipos de datos.
  Alumno: Matias Dominguez
  Legajo: 1743375
  20-05-2020
