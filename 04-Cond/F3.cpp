@@ -11,7 +11,6 @@
  n3,n4,x ∈ R; n1,n2 ∈ Z
 */
 #include <cassert>
-#include <iostream>
 
 double F3(double); //prototipo de F3
 
