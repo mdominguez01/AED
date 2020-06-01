@@ -25,7 +25,7 @@ int main(){
     assert(15.78==F3(n4)); //prueba 4 de la funcion F3
 }
 
-//definicion de F#
+//definicion de F3
 double F3(double x){
     if(x>=-3 && x<=3){ return -x; }
     return x;
