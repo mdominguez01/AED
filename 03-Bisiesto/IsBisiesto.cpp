@@ -1,5 +1,5 @@
 /*
- Trabajo practico N°5 IsBisiesto
+ Trabajo practico N°3 Bisiesto
  Dado un año, determinar si es bisiesto
  Alumno: Matias Dominguez
  Legajo: 1743375
