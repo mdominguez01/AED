@@ -22,5 +22,5 @@ int main(){
 
 //definicion
 bool IsBisiesto (int ano){
-    return ano>=1584 and ano%4==0 and (ano%100!=0 or ano%400==0);
+    return ano>=1582 and ano%4==0 and (ano%100!=0 or ano%400==0);
 } 
