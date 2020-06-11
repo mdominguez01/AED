@@ -9,7 +9,7 @@
   El primer año bisiesto fue el año 1584.
   
   Es bisiesto si: 
-  - el numero debe ser mayor o igual 1584
+  - el numero er mayor o igual 1584
   - divisible por 4
   - no ser divisible por 100
   - ser divisible por 400
