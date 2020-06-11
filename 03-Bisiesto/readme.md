@@ -14,7 +14,7 @@
   - no ser divisible por 100
   - ser divisible por 400
   
-  Los años 1600,2000 y 2400 son bisiestos aunque son divisibles por 100 y 400.
+  Los años 1600,2000 y 2400 son bisiestos aunque son divisibles por 100 y 400 debido pasados 400 años dicho año es bisiesto.
   
 * #### IPO: 
     Z --> IsBisiesto --> B
