@@ -10,21 +10,22 @@
 #include <cassert>
 #include <array>
 
+
 enum struct ColoresBase
 {
     RED,
     GREEN,
     BLUE
 };                              //colores base del modelo RGB
-struct color(unsigned r, g, b); // Color en RGB
-struct punto(double x, y);
-struct triangulo(array<punto, 3> puntosTriangulo, color);
-struct poligono(array<punto, 100> puntosTriangulo, unsigned n, color);
+struct color{unsigned r,g,b;}; // Color en RGB
+struct punto{double x, y;};
+struct triangulo{std::array<punto, 3> puntosTriangulo; color c;};
+struct poligono{std::array<punto, 100> puntosTriangulo; unsigned n; color c;};
 
 //operaciones de POLIGONO
 void agregarPuntoPoligono(poligono &, punto);               //agrego un punto
-void ordenarPosicionesPuntosPoligono(poligono &)            //reordenaria en caso de habere sido removido alguno punto siempre y cuando no haya sido el ultimo punto agregado
-punto removerPuntoPoligono(poligono &, punto, unsigned) // remover un punto especifico y luego ordenar posiciones llamando a ordenarPosicionesPuntosPoligonos
+void ordenarPosicionesPuntosPoligono(poligono &);            //reordenaria en caso de habere sido removido alguno punto siempre y cuando no haya sido el ultimo punto agregado
+punto removerPuntoPoligono(poligono &, punto, unsigned); // remover un punto especifico y luego ordenar posiciones llamando a ordenarPosicionesPuntosPoligonos
 void setColorPoligono(poligono &, color);               //cambia el color
 void setPuntoPoligono(poligono &, color);
 double longitudLadoPoligono(const poligono &, unsigned); //obtener la medida del lado (posicion y posicion+1), en caso de ser el ultimo lado(posicion y posicion inicial)
@@ -42,7 +43,7 @@ double perimetroTriangulo(const triangulo &);              // utiliza longitudLa
 color getColorTringulo(const triangulo &);                 //obtengo el color
 ColoresBase colorPredominanteTrinagulo(const triangulo &);  //obtener el color base predominante
 punto getPunto(const triangulo &, unsigned);               //obtener un punto
-bool isEquilatero(const triangulo &)                       //compararia los lados para saber si el trinagulo es equilatero, para hacerlo llamaria a longitudLadoTriangulo
+bool isEquilatero(const triangulo &);                       //compararia los lados para saber si el trinagulo es equilatero, para hacerlo llamaria a longitudLadoTriangulo
 
 int main(){
 
