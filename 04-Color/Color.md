@@ -1,4 +1,4 @@
-**Especificacion**
+### **Especificacion**
 
   * IsIgual: Color,Color --> B
   * Mezclar: Color,Color --> Color
