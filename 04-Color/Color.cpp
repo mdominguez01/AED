@@ -37,7 +37,6 @@ const Color negro{0, 0, 0};
 bool IsIgual(Color, Color);             // comparar dos colores
 Color Mezclar(Color, Color);            //mezclarr dos colores , por promedio de intensidad
 Color SumarYRestar(modo, Color, Color); //sumar dos colores
-Color Restar(Color, Color);             //restar dos colores
 Color GetComplentario(Color);           // obtiene en red --> cyan, green--> magenta y blue--> amarillo
 
 int main()
