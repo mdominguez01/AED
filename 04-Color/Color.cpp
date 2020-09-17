@@ -1,3 +1,11 @@
+/*
+ Trabajo practico N°4 Color
+ Color
+ Alumno: Matias Dominguez
+ Legajo: 1743375
+ 10-09-2020
+*/
+
 #include <string>
 #include <cstdint>
 #include "Color.h"
