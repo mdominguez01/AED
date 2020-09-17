@@ -10,9 +10,9 @@ No pueden existir Puntos iguales en un poligono.
 
 
 * #### IPO:
-    * AddVertice: Poligono,Punto -->
-    * Getvertice: Poligono, N --> Punto
-    * SetVertice: Poligono, N, Punto -->
-    * RemoverVertice: Poligono, N -->
+    * AddVertice: Poligono x Punto --> Poligono
+    * Getvertice: Poligono x N --> Punto
+    * SetVertice: Poligono x N x Punto --> Poligono
+    * RemoverVertice: Poligono x N --> Poligono
     * CantidadLados: Poligono --> N
     * Get_Perimetro: Poligono --> R
