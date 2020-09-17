@@ -9,11 +9,11 @@ El valor del porcentaje de intensidad es un numero entero de 0 a 100
 
 
 * #### IPO:
-    * IsIgual: Color,Color --> B   
-    * Mezclar: Color,Color --> Color
-    * SumarYRestar: enum,Color,Color --> Color
+    * IsIgual: Color x Color --> B   
+    * Mezclar: Color x Color --> Color
+    * SumarYRestar: enum x Color x Color --> Color
     * GetComplementario: Color --> Color
-    * Mezclar: Color, Color, N --> Color  
+    * Mezclar: Color x Color x N --> Color  
     * GetHtmlHex: Color --> Σ*
     * GethtmlRgb: Color --> Σ*
-    * CrearSvgConTextoEscritoEnAltoContraste: Σ*, Σ*, Color -->  
+    * CrearSvgConTextoEscritoEnAltoContraste: Σ* x Σ* x Color -->  SVG
