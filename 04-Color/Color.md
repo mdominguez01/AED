@@ -1,12 +1,12 @@
 ### **Especificacion**
 
-  * IsIgual: Color X Color --> B       IsIgual(a,b) = { a = b  TRUE
+  * IsIgual: Color x Color --> B       IsIgual(a,b) = { a = b  TRUE
                                                     { a ≠ b  FALSE
 
-  * Mezclar: Color X Color --> Color
-  * SumarYRestar: enum X Color X Color --> Color
+  * Mezclar: Color x Color --> Color
+  * SumarYRestar: enum x Color x Color --> Color
   * GetComplementario: Color --> Color
-  * Mezclar: Color X Color X N --> Color  
+  * Mezclar: Color x Color x N --> Color  
   * GetHtmlHex: Color --> Σ*
   * GethtmlRgb: Color --> Σ*
-  * CrearSvgConTextoEscritoEnAltoContraste: Σ* X Σ* X Color --> SVG
+  * CrearSvgConTextoEscritoEnAltoContraste: Σ* x Σ* x Color --> SVG
