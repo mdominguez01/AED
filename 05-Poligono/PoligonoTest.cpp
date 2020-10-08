@@ -1,5 +1,9 @@
 #include "Poligono.h"
 #include <cassert>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
 
 int main()
 {
@@ -60,6 +64,20 @@ int main()
     //Get_Perimetro
     assert(19.3 < Get_Perimetro(poli2) && 19.4 > Get_Perimetro(poli2));
     assert(!(19.4 < Get_Perimetro(poli2) && 19.5 > Get_Perimetro(poli2)));
+
+    ofstream myfile;
+    myfile.open("poligono.txt");
+    myfile << "255 255 255 4 1.0 3.0 2.0 4.0 -1.0 8.0 -8.0 2.0";
+    //myfile << "1.0 3.0 2.0 4.0 -1.0 8.0 -8.0 2.0";
+    //myfile << "255 255 255\n";
+    myfile.close();
+
+    poligono n;
+    n.n=0;
+    Punto p;
+    ifstream in;
+    in.open("poligono.txt");
+    extraerPoligono(n,in);
 
     return 0;
 }

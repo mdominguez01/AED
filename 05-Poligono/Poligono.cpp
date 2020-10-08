@@ -9,8 +9,11 @@
 #include <string>
 #include <array>
 #include <cmath>
+#include <fstream>
+#include <iostream>
 #include "Poligono.h"
 
+using namespace std;
 
 bool isIgualPunto(const Punto &a, const Punto &b)
 {
@@ -72,4 +75,55 @@ double Get_Perimetro(const poligono &a)
         perimetro = i < a.n ? perimetro + GetDistaciaPunto(a.puntosPoligono[i], a.puntosPoligono[i + 1]) : perimetro + GetDistaciaPunto(a.puntosPoligono[i], a.puntosPoligono[0]);
     }
     return perimetro;
+}
+
+void extraerPoligono(poligono &n, ifstream &in){
+    Color color;
+    int i=0;
+
+       for (int s; in >> s; )
+       {
+           int nro = s;
+
+           switch(i){
+               case 0: 
+                        color.r = (uint8_t) nro;
+                        cout << nro << " aca ";
+                        i++; break;
+               case 1: 
+                        color.g = (uint8_t) nro;
+                        cout << nro << " acaaa ";
+                        i++; break;
+               case 2: 
+                        color.b = (uint8_t) nro;
+                        cout << nro << " ACAAA \n" ;
+                        i++; 
+                        n.color=color;
+                        break;
+               default: 
+                        extraerPuntos(n,in);
+                        break;
+           }
+
+       }
+}
+
+void extraerPuntos(poligono &n, ifstream &in){
+    Punto p;
+    bool op=true;
+    for (double d; in >> d; ){ 
+        double nro = d; 
+        if(op){
+            p.x=nro;
+            cout << p.x << "a\n"; 
+            op=false;
+        }
+        else{
+            p.y = nro;
+            
+            cout << p.y << "b\n"; 
+            AddVertice(n,p);
+        }
+        cout << nro << "\n";    
+    }
 }

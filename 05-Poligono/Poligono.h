@@ -1,4 +1,5 @@
 #include <array>
+#include <fstream>
 
 struct Punto
 {
@@ -37,3 +38,5 @@ void SetVertice(poligono &, unsigned, Punto);
 void RemoverVertice(poligono &, unsigned);
 unsigned CantidadLados(const poligono &);
 double Get_Perimetro(const poligono &);
+void extraerPoligono(poligono &, ifstream &);
+void extraerPuntos(poligono &, ifstream &);
