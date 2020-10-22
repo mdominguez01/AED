@@ -18,6 +18,12 @@ struct poligono
     Color color;
 };
 
+struct Poligonos
+{
+    std::array<poligono, 20> losPoligonos;
+    unsigned n;
+};
+
 /*
 IsIgual, GetDistancia, y
 GetDistanciaAlOrigen.
@@ -38,5 +44,12 @@ void SetVertice(poligono &, unsigned, Punto);
 void RemoverVertice(poligono &, unsigned);
 unsigned CantidadLados(const poligono &);
 double Get_Perimetro(const poligono &);
-void extraerPoligono(poligono &, ifstream &);
-void extraerPuntos(poligono &, ifstream &);
+
+bool ExtraerPoligonos(Poligonos &, istream &);
+bool ExtraerPoligono(poligono &, istream &);
+bool ExtraerColor(Color &, istream &);
+bool ExtraerPunto(Punto &, istream &);
+bool EnviarPoligonos(const Poligonos &, ostream &);
+bool EnviarPoligono(const poligono &, ostream &);
+bool EnviarColor(const Color &, ostream &);
+bool EnviarPunto(const Punto &, ostream &);
