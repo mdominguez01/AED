@@ -79,7 +79,7 @@ int main()
     n.n=0;
     Punto p;
 
-    ifstream in("poligono.txt")
+    ifstream in("poligono.txt");
     ifstream in2("p2.txt");
     
     assert(ExtraerPoligonos(poligonos,in));
