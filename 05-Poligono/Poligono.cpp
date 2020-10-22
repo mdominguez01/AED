@@ -3,7 +3,7 @@
  Poligono  
  Alumno: Matias Dominguez
  Legajo: 1743375
- 10-09-2020
+ 22-10-2020
 */
 
 #include <string>
