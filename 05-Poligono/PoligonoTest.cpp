@@ -65,19 +65,26 @@ int main()
     assert(19.3 < Get_Perimetro(poli2) && 19.4 > Get_Perimetro(poli2));
     assert(!(19.4 < Get_Perimetro(poli2) && 19.5 > Get_Perimetro(poli2)));
 
-    ofstream myfile;
-    myfile.open("poligono.txt");
-    myfile << "255 255 255 4 1.0 3.0 2.0 4.0 -1.0 8.0 -8.0 2.0";
-    //myfile << "1.0 3.0 2.0 4.0 -1.0 8.0 -8.0 2.0";
-    //myfile << "255 255 255\n";
+   ///////////////////ExtraerPoligonos 
+    ofstream myfile("poligono.txt");
+    myfile << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0 0 0 0 4 4.2 4.0 3.1 3.0 -2.0 2.0 -1.0 1.0";
     myfile.close();
 
+    ofstream file("p2.txt");
+    file << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0 0 0 0 4 4.2 4.0 3.1 3.0 -2.0 2.0 -1.0 1.0";
+    file.close();
+
+    Poligonos poligonos;
     poligono n;
     n.n=0;
     Punto p;
-    ifstream in;
-    in.open("poligono.txt");
-    extraerPoligono(n,in);
+
+    ifstream in("poligono.txt")
+    ifstream in2("p2.txt");
+    
+    assert(ExtraerPoligonos(poligonos,in));
+    assert(ExtraerPoligonos(poligonos,in2));
+    assert(ExtraerPoligonos(poligonos,std::cin));
 
     return 0;
 }
