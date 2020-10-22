@@ -15,6 +15,109 @@
 
 using namespace std;
 
+bool ExtraerPoligonos(Poligonos &poligonos, istream &in){
+    poligono n;
+    int place=0;
+    do
+    {
+        ExtraerPoligono(n, in);
+        poligonos.losPoligonos.at(place)=n;
+        poligonos.n=place+1;
+
+        if(!in.eof())place++;
+        
+    } while (!in.eof());
+     
+
+    return in.eof();
+}
+
+bool ExtraerPoligono(poligono &n, istream &in){
+    unsigned nro=0;
+    ExtraerColor(n.color,in);
+    in >> nro;
+    n.n=0;
+    do
+    {
+        ExtraerPunto(n.puntosPoligono.at(n.n),in);
+        n.n++;
+        nro--;
+    } while (nro>0);
+
+    return in.eof();
+}
+
+
+bool ExtraerColor(Color &color, istream &in){
+    int nro;
+    in >> nro;
+    color.r = (uint8_t) nro;
+    in >> nro;
+    color.g = (uint8_t) nro;
+    in >> nro;
+    color.b = (uint8_t) nro;
+
+    return in.eof();
+}
+
+
+bool ExtraerPunto(Punto &p, istream &in){
+    in >> p.x;
+    in >> p.y;
+    return in.eof();
+}
+
+
+
+bool EnviarPoligonos(const Poligonos &poligonos, ostream &out){
+
+    int place=0;
+    do
+    {
+        EnviarPoligono(poligonos.losPoligonos.at(place), cout);
+        if(place<(poligonos.n-1)){
+            cout << " ";
+            place++;
+        }else
+        {
+            place++;
+        }
+        
+    } while ( place<poligonos.n);
+     
+    return out.eof();
+}
+
+bool EnviarPoligono(const poligono &n, ostream &out){
+    unsigned nro=0;
+    EnviarColor(n.color,out);
+    out << n.n;
+    do
+    {
+        EnviarPunto(GetVertice(n,nro),out);
+        nro++;
+    } while (nro<n.n);
+    
+    return out.eof();
+}
+
+
+
+bool EnviarColor(const Color &color, ostream &out){
+    
+    out << (unsigned)color.r << " ";
+    out << (unsigned)color.g << " ";
+    out << (unsigned)color.b << " ";
+
+    return out.eof();
+}
+
+bool EnviarPunto(const Punto &punto, stream &out){
+    out << " " << punto.x << " ";
+    out << punto.y ;
+    return out.eof();
+}
+
 bool isIgualPunto(const Punto &a, const Punto &b)
 {
     return (a.x == b.x) && (a.y == b.y) ? true : false;
