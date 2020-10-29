@@ -11,23 +11,31 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <vector>
 #include "Poligono.h"
 
 using namespace std;
 
-bool ExtraerPoligonos(Poligonos &poligonos, istream &in){
+bool ExtraerPoligonosSegunPerimetros(vector<poligono> &poligonos, istream &in, double min_p,double max_p){
     poligono n;
-    int place=0;
     do
     {
         ExtraerPoligono(n, in);
-        poligonos.losPoligonos.at(place)=n;
-        poligonos.n=place+1;
-
-        if(!in.eof())place++;
+        if(min_p < Get_Perimetro(n) && max_p > Get_Perimetro(n))poligonos.push_back(n);
         
     } while (!in.eof());
-     
+
+    return in.eof();
+}
+
+bool ExtraerPoligonos(vector<poligono> &poligonos, istream &in){
+    poligono n;
+    do
+    {
+        ExtraerPoligono(n, in);
+        poligonos.push_back(n);
+        
+    } while (!in.eof());
 
     return in.eof();
 }
@@ -43,7 +51,7 @@ bool ExtraerPoligono(poligono &n, istream &in){
         n.n++;
         nro--;
     } while (nro>0);
-
+    n.n--;
     return in.eof();
 }
 
@@ -69,21 +77,21 @@ bool ExtraerPunto(Punto &p, istream &in){
 
 
 
-bool EnviarPoligonos(const Poligonos &poligonos, ostream &out){
+bool EnviarPoligonos(const vector<poligono> &poligonos, ostream &out){
 
     int place=0;
     do
     {
-        EnviarPoligono(poligonos.losPoligonos.at(place), cout);
-        if(place<(poligonos.n-1)){
+        EnviarPoligono(poligonos.at(place), cout);
+        if(place<(poligonos.size()-1)){
             cout << " ";
             place++;
         }else
         {
             place++;
         }
-        
-    } while ( place<poligonos.n);
+        cout << "\n";
+    } while ( place<poligonos.size());
      
     return out.eof();
 }
@@ -91,17 +99,15 @@ bool EnviarPoligonos(const Poligonos &poligonos, ostream &out){
 bool EnviarPoligono(const poligono &n, ostream &out){
     unsigned nro=0;
     EnviarColor(n.color,out);
-    out << n.n;
+    out << n.n+1;
     do
     {
         EnviarPunto(GetVertice(n,nro),out);
         nro++;
-    } while (nro<n.n);
+    } while (nro<=n.n);
     
     return out.eof();
 }
-
-
 
 bool EnviarColor(const Color &color, ostream &out){
     
@@ -112,7 +118,7 @@ bool EnviarColor(const Color &color, ostream &out){
     return out.eof();
 }
 
-bool EnviarPunto(const Punto &punto, stream &out){
+bool EnviarPunto(const Punto &punto, ostream &out){
     out << " " << punto.x << " ";
     out << punto.y ;
     return out.eof();
