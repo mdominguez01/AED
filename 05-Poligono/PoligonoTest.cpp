@@ -89,7 +89,7 @@ int main()
     
     assert(ExtraerPoligonos(poligonos,in));
     assert(ExtraerPoligonosSegunPerimetros(poligonos2,in2,0,20.0));
-    assert(ExtraerPoligonos(poligonos,std::cin));
+    //assert(ExtraerPoligonos(poligonos,std::cin));
     
     assert(!EnviarPoligonos(poligonos,cout));
     assert(!EnviarPoligonos(poligonos2,cout));
