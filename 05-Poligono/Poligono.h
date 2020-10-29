@@ -1,5 +1,6 @@
 #include <array>
 #include <fstream>
+#include <vector>
 
 struct Punto
 {
@@ -16,12 +17,6 @@ struct poligono
     std::array<Punto, 20> puntosPoligono;
     unsigned n;
     Color color;
-};
-
-struct Poligonos
-{
-    std::array<poligono, 20> losPoligonos;
-    unsigned n;
 };
 
 /*
@@ -45,11 +40,13 @@ void RemoverVertice(poligono &, unsigned);
 unsigned CantidadLados(const poligono &);
 double Get_Perimetro(const poligono &);
 
-bool ExtraerPoligonos(Poligonos &, istream &);
+bool ExtraerPoligonos(vector<poligono> &, std::istream &);
 bool ExtraerPoligono(poligono &, istream &);
 bool ExtraerColor(Color &, istream &);
 bool ExtraerPunto(Punto &, istream &);
-bool EnviarPoligonos(const Poligonos &, ostream &);
+bool EnviarPoligonos(const vector<poligono> &, std::ostream &);
 bool EnviarPoligono(const poligono &, ostream &);
 bool EnviarColor(const Color &, ostream &);
 bool EnviarPunto(const Punto &, ostream &);
+bool ExtraerPoligonosSegunPerimetros(vector<poligono> &, std::istream &, double, double);
+
