@@ -2,6 +2,7 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -65,16 +66,20 @@ int main()
     assert(19.3 < Get_Perimetro(poli2) && 19.4 > Get_Perimetro(poli2));
     assert(!(19.4 < Get_Perimetro(poli2) && 19.5 > Get_Perimetro(poli2)));
 
-   ///////////////////ExtraerPoligonos 
+   // Creacion de los archivos
+    
     ofstream myfile("poligono.txt");
-    myfile << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0 0 0 0 4 4.2 4.0 3.1 3.0 -2.0 2.0 -1.0 1.0";
+    myfile << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0\n0 0 0 4 2.0 2.0 -2.0 2.0 2.0 -2.0 -2.0 -2.0";
     myfile.close();
 
     ofstream file("p2.txt");
-    file << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0 0 0 0 4 4.2 4.0 3.1 3.0 -2.0 2.0 -1.0 1.0";
+    file << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0\n0 0 0 4 2.0 2.0 -2.0 2.0 -2.0 -2.0 2.0 -2.0";
     file.close();
+    
+    // ExtaerPoligonos, ExtraerPoligonosSegunParametros y EnviarPoligonos
 
-    Poligonos poligonos;
+    vector<poligono> poligonos;
+    vector<poligono> poligonos2;
     poligono n;
     n.n=0;
     Punto p;
@@ -83,8 +88,11 @@ int main()
     ifstream in2("p2.txt");
     
     assert(ExtraerPoligonos(poligonos,in));
-    assert(ExtraerPoligonos(poligonos,in2));
+    assert(ExtraerPoligonosSegunPerimetros(poligonos2,in2,0,20.0));
     assert(ExtraerPoligonos(poligonos,std::cin));
+    
+    assert(!EnviarPoligonos(poligonos,cout));
+    assert(!EnviarPoligonos(poligonos2,cout));
 
     return 0;
 }
