@@ -79,7 +79,7 @@ int main()
 
     // CopiarPoligonosConPerimetrosMayoresA
 
-    CopiarPoligonosConPerimetrosMayoresA(20.0, "documentoPoligonos","salida");
+    //CopiarPoligonosConPerimetrosMayoresA(20.0, "documentoPoligonos","salida");
 
     
     return 0;
