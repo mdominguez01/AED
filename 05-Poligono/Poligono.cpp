@@ -3,44 +3,70 @@
  Poligono  
  Alumno: Matias Dominguez
  Legajo: 1743375
- 28-10-2020
+ 10-09-2020
 */
-
 #include <string>
 #include <array>
 #include <cmath>
 #include <fstream>
 #include <iostream>
-#include <vector>
 #include "Poligono.h"
 
 using namespace std;
 
-bool ExtraerPoligonosSegunPerimetros(vector<poligono> &poligonos, istream &in, double min_p,double max_p){
-    poligono n;
+void CopiarPoligonosConPerimetrosMayoresA (double min, string nombreArchivoIn, string nombreArchivoOut){
+    
+    Poligonos poligonos;
+    ifstream in(nombreArchivoIn+".txt");
+    ExtraerPoligonosSegunPerimetros(poligonos,in,min);
+
+    ofstream theFile(nombreArchivoOut+".txt");
+    InsertarPoligonos(poligonos,theFile);
+    theFile.close();
+
+}
+
+bool ExtraerPoligonosSegunPerimetros(Poligonos &poligonos, istream &in, double min_p){
+
+    poligonos.n=0;
+    Poligono n;
+    int place=0;
     do
     {
         ExtraerPoligono(n, in);
-        if(min_p < Get_Perimetro(n) && max_p > Get_Perimetro(n))poligonos.push_back(n);
+        //if(max_p > Get_Perimetro(n)){
+        double perimetroN=GetPerimetro(n);    
+        if(min_p < perimetroN ){
+            poligonos.losPoligonos.at(place)=n;
+            poligonos.n++;
+            
+            if(!in.eof())place++;
+        }
         
     } while (!in.eof());
 
     return in.eof();
+
 }
 
-bool ExtraerPoligonos(vector<poligono> &poligonos, istream &in){
-    poligono n;
+bool ExtraerPoligonos(Poligonos &poligonos, istream &in){
+    Poligono n;
+    int place=0;
     do
     {
         ExtraerPoligono(n, in);
-        poligonos.push_back(n);
+        poligonos.losPoligonos.at(place)=n;
+        poligonos.n=place+1;
         
+        if(!in.eof())place++;
+
     } while (!in.eof());
 
     return in.eof();
+
 }
 
-bool ExtraerPoligono(poligono &n, istream &in){
+bool ExtraerPoligono(Poligono &n, istream &in){
     unsigned nro=0;
     ExtraerColor(n.color,in);
     in >> nro;
@@ -51,7 +77,7 @@ bool ExtraerPoligono(poligono &n, istream &in){
         n.n++;
         nro--;
     } while (nro>0);
-    n.n--;
+    //n.n--;
     return in.eof();
 }
 
@@ -77,40 +103,43 @@ bool ExtraerPunto(Punto &p, istream &in){
 
 
 
-bool EnviarPoligonos(const vector<poligono> &poligonos, ostream &out){
-
+bool InsertarPoligonos(const Poligonos &poligonos, ostream &out){  //cambiar nombre a la funcion
+    if(poligonos.n==0)return out.eof();
     int place=0;
     do
     {
-        EnviarPoligono(poligonos.at(place), cout);
-        if(place<(poligonos.size()-1)){
-            cout << " ";
+        InsertarPoligono(poligonos.losPoligonos.at(place), out);
+        if(place<(poligonos.n-1)){
+            out << " ";
             place++;
         }else
         {
             place++;
         }
-        cout << "\n";
-    } while ( place<poligonos.size());
-     
+        out << "\n";
+    } while ( place<poligonos.n);
+
     return out.eof();
+
 }
 
-bool EnviarPoligono(const poligono &n, ostream &out){
-    unsigned nro=0;
-    EnviarColor(n.color,out);
-    out << n.n+1;
+bool InsertarPoligono(const Poligono &n, ostream &out){ //cambiar nombre a la funcion
+    unsigned nro=1;
+    InsertarColor(n.color,out);
+    out << n.n;
     do
     {
-        EnviarPunto(GetVertice(n,nro),out);
+        InsertarPunto(GetVertice(n,nro),out);
         nro++;
     } while (nro<=n.n);
-    
+
     return out.eof();
 }
 
-bool EnviarColor(const Color &color, ostream &out){
-    
+
+
+bool InsertarColor(const Color &color, ostream &out){ //cambiar nombre a la funcion
+
     out << (unsigned)color.r << " ";
     out << (unsigned)color.g << " ";
     out << (unsigned)color.b << " ";
@@ -118,71 +147,61 @@ bool EnviarColor(const Color &color, ostream &out){
     return out.eof();
 }
 
-bool EnviarPunto(const Punto &punto, ostream &out){
+bool InsertarPunto(const Punto &punto, ostream &out){   
     out << " " << punto.x << " ";
     out << punto.y ;
     return out.eof();
 }
 
-bool isIgualPunto(const Punto &a, const Punto &b)
+bool isIgual(const Punto &a, const Punto &b)  
 {
     return (a.x == b.x) && (a.y == b.y) ? true : false;
 }
-
-double GetDistaciaPunto(const Punto &a, const Punto &b)
+double GetDistacia(const Punto &a, const Punto &b) 
 {
     double d = sqrt(pow((b.x - a.x), 2.0) + pow((b.y - a.y), 2.0));
     return d;
 }
-
 double GetDistanciaAlOrigen(const Punto &a)
 {
     Punto x{0,0};
-    return GetDistaciaPunto(x,a);
+    return GetDistacia(x,a);
 }
-
 //Funiones de un Poligono
-
-void AddVertice(poligono &a, Punto p)
+void AddVertice(Poligono &a, Punto p)
 {
-    a.n = a.n + 1;
     a.puntosPoligono[a.n].x = p.x;
     a.puntosPoligono[a.n].y = p.y;
+    a.n = a.n + 1;
+   
 }
-
-Punto GetVertice(const poligono &a, unsigned n2)
+Punto GetVertice(const Poligono &a, unsigned n2)
 {
-    return a.puntosPoligono[n2];
+    return a.puntosPoligono[n2-1];
 }
-
-void SetVertice(poligono &a, unsigned n2, Punto p)
+void SetVertice(Poligono &a, unsigned n2, Punto p)
 {
-    a.puntosPoligono[n2].x = p.x;
-    a.puntosPoligono[n2].y = p.y;
+    a.puntosPoligono[n2-1].x = p.x;
+    a.puntosPoligono[n2-1].y = p.y;
 }
-
-void RemoverVertice(poligono &a, unsigned n2)
+void RemoveVertice(Poligono &a, unsigned n2)
 {
-
     for (unsigned i = n2; i <= a.n; i++)
     {
         a.puntosPoligono[i] = a.puntosPoligono[i + 1];
     }
     a.n = a.n - 1;
 }
-
-unsigned CantidadLados(const poligono &a)
+unsigned GetCantidadLados(const Poligono &a)  
 {
-    return a.n + 1;
+    return a.n;
 }
-
-double Get_Perimetro(const poligono &a)
+double GetPerimetro(const Poligono &a)       
 {
     double perimetro = 0;
-    for (unsigned i = 0; i <= a.n; i++)
+    for (unsigned i = 1; i <= a.n; i++)
     {
-        perimetro = i < a.n ? perimetro + GetDistaciaPunto(a.puntosPoligono[i], a.puntosPoligono[i + 1]) : perimetro + GetDistaciaPunto(a.puntosPoligono[i], a.puntosPoligono[0]);
+        perimetro = i < a.n ? perimetro + GetDistacia(GetVertice(a,i), GetVertice(a,(i+1))) : perimetro + GetDistacia(GetVertice(a,i), GetVertice(a,1));
     }
     return perimetro;
 }
-

@@ -2,97 +2,85 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <vector>
-
 using namespace std;
-
 int main()
 {
-    Punto uno = {2.0, 2.0};
-    Punto unoCopia = {2.0, 2.0}; //igual al punto uno
-    Punto dos = {-2.0, 2.0};
+   Punto uno = {-2.0, 2.0};
+    Punto unoCopia = {-2.0, 2.0}; //igual al punto uno
+    Punto dos = {2.0, 2.0};
     Punto tres = {2.0, -2.0};
     Punto cuatro = {-2.0, -2.0};
-    poligono poli{{uno, dos, tres, cuatro}, 3, {0, 0, 0}};
-    poligono poli2{{uno, dos, tres, cuatro}, 3, {0, 0, 0}};
 
-    //aserts comparacion puntos
-    assert(isIgualPunto(uno, unoCopia));
-    assert(!isIgualPunto(uno, dos));
-    assert(!isIgualPunto(uno, tres));
-    assert(!isIgualPunto(cuatro, dos));
+    //Poligono poli{{uno, dos, tres, cuatro}, 4, {0, 0, 0}};
+    //Poligono poli2{{uno, dos, tres, cuatro}, 4, {0, 0, 0}};
+    
+    Poligono poli{{}, 0, {0, 0, 0}};
 
-    // asserts getDistacia al punto
-    assert(GetDistaciaPunto(uno, dos) == 4.0);
-    assert(6.0 > GetDistaciaPunto(dos, tres) && 5.0 < GetDistaciaPunto(dos, tres));
-    assert(GetDistaciaPunto(tres, cuatro) == 4.0);
-    assert(6.0 > GetDistaciaPunto(cuatro, uno) && 5.0 < GetDistaciaPunto(cuatro, uno));
+    AddVertice(poli, uno);
+    AddVertice(poli, dos);
+    AddVertice(poli, tres);
+    AddVertice(poli, cuatro);
 
-    //asserts getDistancia al origen
-    assert(3.0 > GetDistanciaAlOrigen(uno) && 2.0 < GetDistanciaAlOrigen(uno));
-    assert(3.0 > GetDistanciaAlOrigen(tres) && 2.0 < GetDistanciaAlOrigen(tres));
-    assert(3.0 > GetDistanciaAlOrigen(dos) && 2.0 < GetDistanciaAlOrigen(dos));
-    assert(3.0 > GetDistanciaAlOrigen(cuatro) && 2.0 < GetDistanciaAlOrigen(cuatro));
-
-    //asserts del POligono
+    //asserts del Poligono
     //Get Vertice
-    assert(isIgualPunto(uno, GetVertice(poli, 0)));
-    assert(isIgualPunto(dos, GetVertice(poli, 1)));
-    assert(!isIgualPunto(tres, GetVertice(poli, 0)));
-    assert(!isIgualPunto(cuatro, GetVertice(poli, 2)));
+    assert(isIgual(uno, GetVertice(poli, 1)));
+    assert(isIgual(dos, GetVertice(poli, 2)));
+    assert(!isIgual(tres, GetVertice(poli, 1)));
+    assert(!isIgual(cuatro, GetVertice(poli, 2)));
 
     //Add vetice
     Punto cinco{-10, 0};
     AddVertice(poli, cinco);
-    assert(isIgualPunto(cinco, GetVertice(poli, 4)));
-    assert(!isIgualPunto(tres, GetVertice(poli, 4)));
+    assert(isIgual(cinco, GetVertice(poli, 5)));
+    assert(!isIgual(tres, GetVertice(poli, 5)));
 
     //Set vetice
-    SetVertice(poli, 4, uno);
-    assert(!isIgualPunto(cinco, GetVertice(poli, 4)));
-    assert(isIgualPunto(uno, GetVertice(poli, 4)));
+    SetVertice(poli, 5, uno);
+    assert(!isIgual(cinco, GetVertice(poli, 5)));
+    assert(isIgual(uno, GetVertice(poli, 5)));
 
     //Catidad de lados
-    assert(4 == CantidadLados(poli2));
-    assert(4 != CantidadLados(poli));
-    assert(5 == CantidadLados(poli));
+    assert(4 != GetCantidadLados(poli));
+    assert(5 == GetCantidadLados(poli));
 
     //Remover vetice
-    RemoverVertice(poli, 0);
-    assert(isIgualPunto(dos, GetVertice(poli, 0)));
-    assert(!isIgualPunto(dos, GetVertice(poli, 1)));
+    RemoveVertice(poli, 5);
+    assert(isIgual(cuatro, GetVertice(poli, poli.n)));
+    assert(!isIgual(cuatro, GetVertice(poli, 3)));
 
     //Get_Perimetro
-    assert(19.3 < Get_Perimetro(poli2) && 19.4 > Get_Perimetro(poli2));
-    assert(!(19.4 < Get_Perimetro(poli2) && 19.5 > Get_Perimetro(poli2)));
+    assert(15.9 < GetPerimetro(poli) && 16.1 > GetPerimetro(poli));
+    assert(!(19.4 < GetPerimetro(poli) && 19.5 > GetPerimetro(poli)));
 
-   // Creacion de los archivos
+
+    // Creacion de los archivos
     
     ofstream myfile("poligono.txt");
-    myfile << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0\n0 0 0 4 2.0 2.0 -2.0 2.0 2.0 -2.0 -2.0 -2.0";
+    myfile << "255 255 255 5 0.2 2.0 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0\n0 0 0 4 2.0 2.0 -2.0 2.0 2.0 -2.0 -2.0 -2.0";
     myfile.close();
 
     ofstream file("p2.txt");
-    file << "255 255 255 4 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0\n0 0 0 4 2.0 2.0 -2.0 2.0 -2.0 -2.0 2.0 -2.0";
+    file << "255 255 255 5 0.2 2.0 1.2 3.0 2.1 4.0 -1.0 8.0 -8.0 2.0\n0 0 0 4 2.0 2.0 -2.0 2.0 -2.0 -2.0 2.0 -2.0";
     file.close();
     
-    // ExtaerPoligonos, ExtraerPoligonosSegunParametros y EnviarPoligonos
+    // ExtaerPoligonos, InsertarPoligonos 
 
-    vector<poligono> poligonos;
-    vector<poligono> poligonos2;
-    poligono n;
-    n.n=0;
-    Punto p;
-
+    Poligonos poligonos;
+    Poligonos poligonos2;
+  
     ifstream in("poligono.txt");
     ifstream in2("p2.txt");
     
     assert(ExtraerPoligonos(poligonos,in));
-    assert(ExtraerPoligonosSegunPerimetros(poligonos2,in2,0,20.0));
-    assert(ExtraerPoligonos(poligonos,std::cin));
+    assert(ExtraerPoligonos(poligonos2,in2));
     
-    assert(!EnviarPoligonos(poligonos,cout));
-    assert(!EnviarPoligonos(poligonos2,cout));
+    assert(!InsertarPoligonos(poligonos,cout));
+    assert(!InsertarPoligonos(poligonos2,cout));
 
+    // CopiarPoligonosConPerimetrosMayoresA
+
+    CopiarPoligonosConPerimetrosMayoresA(20.0, "documentoPoligonos","salida");
+
+    
     return 0;
 }

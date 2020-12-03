@@ -1,6 +1,6 @@
 #include <array>
 #include <fstream>
-#include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -8,47 +8,48 @@ struct Punto
 {
     double x, y;
 };
-
 struct Color
 {
     uint8_t r, g, b;
 };
-
-struct poligono
+struct Poligono
 {
     std::array<Punto, 20> puntosPoligono;
     unsigned n;
     Color color;
 };
 
+struct Poligonos
+{
+    std::array<Poligono, 20> losPoligonos;
+    unsigned n;
+};
+
 /*
 IsIgual, GetDistancia, y
 GetDistanciaAlOrigen.
 */
-
-bool isIgualPunto(const Punto &, const Punto &);
-double GetDistaciaPunto(const Punto &, const Punto &);
+bool isIgual(const Punto &, const Punto &);
+double GetDistacia(const Punto &, const Punto &);
 double GetDistanciaAlOrigen(const Punto &);
-
 /*
  AddVértice, GetVértice, SetVértice, RemoveVértice,
 GetCantidadLados, y Get_GetPerímetro.
 */
+void AddVertice(Poligono &, Punto);
+Punto GetVertice(const Poligono &, unsigned);
+void SetVertice(Poligono &, unsigned, Punto);
+void RemoveVertice(Poligono &, unsigned);
+unsigned GetCantidadLados(const Poligono &);
+double GetPerimetro(const Poligono &);
 
-void AddVertice(poligono &, Punto);
-Punto GetVertice(const poligono &, unsigned);
-void SetVertice(poligono &, unsigned, Punto);
-void RemoverVertice(poligono &, unsigned);
-unsigned CantidadLados(const poligono &);
-double Get_Perimetro(const poligono &);
-
-bool ExtraerPoligonos(vector<poligono> &, std::istream &);
-bool ExtraerPoligono(poligono &, istream &);
+bool ExtraerPoligonos(Poligonos &, istream &);
+bool ExtraerPoligono(Poligono &, istream &);
 bool ExtraerColor(Color &, istream &);
 bool ExtraerPunto(Punto &, istream &);
-bool EnviarPoligonos(const vector<poligono> &, std::ostream &);
-bool EnviarPoligono(const poligono &, ostream &);
-bool EnviarColor(const Color &, ostream &);
-bool EnviarPunto(const Punto &, ostream &);
-bool ExtraerPoligonosSegunPerimetros(vector<poligono> &, std::istream &, double, double);
-
+bool InsertarPoligonos(const Poligonos &, ostream &);
+bool InsertarPoligono(const Poligono &, ostream &);
+bool InsertarColor(const Color &, ostream &);
+bool InsertarPunto(const Punto &, ostream &);
+bool ExtraerPoligonosSegunPerimetros(Poligonos &, std::istream &, double);
+void CopiarPoligonosConPerimetrosMayoresA(double,string,string);
