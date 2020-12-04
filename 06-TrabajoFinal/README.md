@@ -14,4 +14,5 @@ tienen un perímetro menor a un valor x.
 El poligono esta compuesto de Puntos (minimo tres puntos).
 Cada Punto tiene dos valores reales (x e y).
 No pueden existir Puntos iguales en un poligono.
-El lugar de extraccion y de insersion debe poder diferentes tipos de origen(cin,archivo,etc) y diferentes tipos de destino(cout,archivo,etc) no solo uno en especifico como seria cin y cout.
+
+El lugar de extraccion y de insersion (Enviar e Insertar) debe poder implementar diferentes tipos de origen(cin,archivo,etc) y diferentes tipos de destino(cout,archivo,etc) no solo uno en especifico como seria cin y cout.
