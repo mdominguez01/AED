@@ -275,3 +275,20 @@ double GetPerimetro(const Poligono &a)
     return perimetro;
 }
 
+//Funciones color
+bool IsIgual(Color a, Color b)
+{
+    return (a.r == b.r) && (a.g == b.g) && (a.b == b.b) ? true : false;
+}
+
+Color Mezclar(Color a, Color b){
+    double intensidad=0.5;
+    Color mezcla{0,0,0};
+    double aRojo = (a.r) * intensidad; double aVerde = (a.g) * intensidad; double aAzul = (a.b) * intensidad;
+    double bRojo = (b.r) * intensidad; double bVerde = (b.g) * intensidad; double bAzul = (b.b) * intensidad;
+    mezcla= {(uint8_t)(aRojo+bRojo),(uint8_t)(aVerde+bVerde),(uint8_t)(aAzul+bAzul)};
+
+    //std::cout<< "mezcla---> RED: " <<(unsigned)mezcla.r <<"  GREEN: "<<(unsigned)mezcla.g<<" BLUE: " << (unsigned)mezcla.b; 
+
+    return mezcla;
+}

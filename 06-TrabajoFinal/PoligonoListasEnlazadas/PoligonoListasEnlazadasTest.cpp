@@ -15,6 +15,17 @@ using namespace std;
 
 int main()
 {
+
+    Color mezclaTest1{255, 0, 127};
+    Color mezcla1 = Mezclar(red, magenta);
+
+    //asserts de igualar color y mezclar
+    assert(IsIgual(red,{255,0,0}));
+    assert(IsIgual(blue,{0,0,255}));
+    assert(IsIgual(blanco,{255,255,255}));
+    assert(IsIgual(mezcla1, mezclaTest1));
+
+
     Punto uno = {-2.0, 2.0};
     Punto dos = {2.0, 2.0};
     Punto tres = {2.0, -2.0};
